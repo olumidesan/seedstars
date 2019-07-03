@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bulma.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <link async defer href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    {% block links %}{% endblock %}
+</head>
+
+<body>
+    {% block content %}{% endblock %}
+    {% block scripts %}
+    {% endblock %}
+    {% block misc %}{% endblock %}
+</body>
+</html>

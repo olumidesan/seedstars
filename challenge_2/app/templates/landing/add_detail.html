@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block title %}
+Add New Detail
+{% endblock %}
+{% block content %}
+<div class="page-centralize">
+    <div class="detail-one">
+        <p class="title centralize">Add a new detail</p>
+        <div>
+            <div style="margin: 40px;"></div>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="field">
+                    <label class="label">{{ form.name.label }}</label>
+                    <div class="control">
+                        {{ form.name(class="input", placeholder="A name") }}
+                    </div>
+                    {% if form.name.errors %}
+                    <p class="help flash">{{ form.name.errors[0] }}</p>
+                    {% endif %}
+                </div>
+                <div class="field">
+                    <label class="label">{{ form.email.label }}</label>
+                    <div class="control">
+                        {{ form.email(class="input", placeholder="you@domain.com") }}
+                    </div>
+                    {% if form.email.errors %}
+                    <p class="help flash">{{ form.email.errors[0] }}</p>
+                    {% endif %}
+                </div>
+                <div class="field" style="margin-top: 35px;">
+                    <div class="control centralize">
+                        {{ form.submit(class="button is-link submit-button") }}
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <div class="centralize">
+                <a href="{{ url_for('list_details') }}">Show All</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
