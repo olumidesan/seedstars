@@ -5,15 +5,15 @@ from jenkins import Jenkins
 
 if __name__ == '__main__':
     # Main script
-    username = input("Enter the username of your Jenkins instance: ")
-    password = getpass("Enter the password or token for the Jenkins instance: ")
+    username = input("Enter the username of your Jenkins server: ")
+    password = getpass("Enter the password or token for the Jenkins server: ")
 
     kwargs = dict(username=username, pwd_or_token=password)
 
-    domain = input("Enter the domain name of your Jenkins instance defaults to 'localhost' if you just press Enter): ")
+    domain = input("Enter the domain name of your Jenkins server. (Defaults to 'localhost' if you just press Enter): ")
 
     while 1:
-        port = input("Enter the port of your Jenkins instance (defaults to 8080 if you just press Enter): ")
+        port = input("Enter the port of your Jenkins server. (Defaults to 8080 if you just press Enter): ")
         # If Enter was pressed
         if not port:
             break 

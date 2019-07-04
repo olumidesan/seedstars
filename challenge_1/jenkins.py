@@ -9,7 +9,7 @@ import sqlite3 as sq
 
 DB_NAME = "jenkins_jobs.db"
 
-# Create SQLite Database and tables if it doesn't already exist
+# Create SQLite Database and tables if they don't already exist
 db = sq.connect(DB_NAME)
 cursor = db.cursor()
 cursor.execute(
@@ -23,10 +23,10 @@ class Jenkins:
     Jenkins class for connecting and communicating 
     with a Jenkins server
 
-    :param username: the username of the jenkins instance
-    :param pwd_or_token: the password or token of the jenkins instance
-    :param server_domain: the domain of the jenkins instance
-    :param server_port: the port number of the jenkins instance
+    :param username: the username on the jenkins server
+    :param pwd_or_token: the password or token on the jenkins server
+    :param server_domain: the domain of the jenkins server
+    :param server_port: the port number of the jenkins server
     """
 
     # Class attributes
@@ -47,7 +47,7 @@ class Jenkins:
 
     def __make_jenkins_url(self):
         """
-        Make a fully qualified URL for connecting to Jenkins
+        Make a fully qualified URL for connecting to the Jenkins server
         """
 
         return f"http://{self.username}:{self.pwd_or_token}@{self.server_domain}:{self.server_port}/"
@@ -97,6 +97,7 @@ class Jenkins:
             raise JenkinsException("An error occured")
 
         print("Success: Saved details to database")
+
 
     def __repr__(self):
         """JSON-like representation of the object"""
