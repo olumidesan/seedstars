@@ -11,4 +11,4 @@
 
 
 #### Note
-The question said to create the script __from a given Jenkins__ instance. I figured passing an existing Jenkins instance to a Python script would cause trouble as I may not even know what language the Jenkins instance was created from, that's why instead of asking the user to pass a Jenkins instance, I'm instead requiring the user to create the Jenkins instance using my own API.
+The question said to create the script __given a Jenkins instance__. I figured passing an existing Jenkins instance to a Python script would cause trouble as I may not even know what language the Jenkins instance was created from, that's why instead of asking the user to pass a Jenkins instance, I'm instead requiring the user to create the Jenkins instance using my own API.
