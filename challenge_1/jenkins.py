@@ -1,5 +1,6 @@
 
 # Module imports
+from urllib import request
 from datetime import datetime
 from jenkins_exceptions import JenkinsException, JenkinsAuthorizationException
 
@@ -29,9 +30,10 @@ class Jenkins:
     :param server_port: the port number of the jenkins server
     """
 
-    # Class attributes
-    jobs_pathname = "api/json?tree=jobs[name]"
-    build_status_pathname = "/api/json?tree=builds[result]"
+    # url string that represents the url from which the jobs
+    # details (name and build result) are gotten from.
+    # Defined as a class attribute
+    builds_url = "/api/json?tree=jobs[name,builds[result]]"
 
     def __init__(self,
                  username: str,
@@ -73,29 +75,37 @@ class Jenkins:
         """
         Function that gets all the jobs in the Jenkins instance
         and then the status (result) of each job, if any
+        
+        TC: n^2
         """
 
-        jobs = requests.get(self.url + self.__class__.jobs_pathname)
+        # Try to get all the jobs and their details
+        jobs = requests.get(self.url + self.__class__.builds_url)
 
+        # If it's successful
         if jobs.status_code == 200:
-            all_jobs = [job['name'] for job in jobs.json().get('jobs')]
+            # Get a list of the jobs and their details (name, builds, etc.)
+            jobs = jobs.json().get('jobs')
 
-            for name in all_jobs:
-                builds = requests.get(
-                    self.url + f"/job/{name}" +
-                    self.__class__.build_status_pathname).json().get('builds')
-                for build in builds:
-                    self.save_job_details(name,
-                                          build.get('result').capitalize())
+            # For each job
+            for job in jobs:
+                # For each build in the job's builds list
+                for build in job.get('builds'):
+                    # Save the name of the job and the build status of the job's build
+                    self.save_job_details(job.get('name'), build.get('result').capitalize())
 
+            # Finally close the database
             db.close()
 
+        # Incase of wrong credentials
         elif jobs.status_code in (401, 403):
             raise JenkinsAuthorizationException("Invalid credentials")
-
+        
+        # Other kinds of errors, generically categorized
         else:
             raise JenkinsException("An error occured")
 
+        # Echo notification
         print(f"Success: Saved details to database {DB_NAME}")
 
 
