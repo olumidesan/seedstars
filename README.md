@@ -1,3 +1,3 @@
 
-## Solution to Seedstars' Challenge
+## Solutions to Seedstars' Challenge
 All solutions require Python 3.5+

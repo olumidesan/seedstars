@@ -96,7 +96,7 @@ class Jenkins:
         else:
             raise JenkinsException("An error occured")
 
-        print("Success: Saved details to database")
+        print(f"Success: Saved details to database {DB_NAME}")
 
 
     def __repr__(self):
