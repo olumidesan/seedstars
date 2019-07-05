@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} List All Details {% endblock %}
+{% block content %}
+<div class="details-main"">
+    {% if details|length == 0 %}
+    <p class="title centralize">
+    No saved details. Add one <span><a href="{% url 'add_detail' %}">here</a></span>
+    </p>
+    {% else %}
+    <p class="title centralize">
+        All Saved Details
+    </p>
+    <div style="overflow-x: auto;">
+        <table class="table is-fullwidth is-stripped is-hoverable">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Email Address</th>
+                    <th>Date Added</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for detail in details %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ detail.name }}</td>
+                    <td>{{ detail.email_address }}</td>
+                    <td>{{ detail.created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <div class="centralize">
+            <a href="{% url 'add_detail' %}">Add New</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

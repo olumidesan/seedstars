@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+Add New Detail
+{% endblock %}
+{% block content %}
+<div class="page-centralize">
+    <div class="detail-one">
+        <p class="title centralize">Add a new detail</p>
+        <div>
+            <div style="margin: 40px;"></div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        {{ form.name }}
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Email Address</label>
+                    <div class="control">
+                        {{ form.email_address }}
+                    </div>
+                    {% if form.email_address.errors %}
+                    <ol>
+                        {% for error in form.email_address.errors %}
+                        <li class="help flash">{{ error|escape }}</li>
+                        {% endfor %}
+                    </ol>
+                    {% endif %}
+                </div>
+                <div class="field" style="margin-top: 35px;">
+                    <div class="control centralize">
+                        <button class="button is-link submit-button">Save</button>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <div class="centralize">
+                <a href="{% url 'list_details' %}">Show All</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

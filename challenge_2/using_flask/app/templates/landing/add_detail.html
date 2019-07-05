@@ -15,9 +15,6 @@ Add New Detail
                     <div class="control">
                         {{ form.name(class="input", placeholder="A name") }}
                     </div>
-                    {% if form.name.errors %}
-                    <p class="help flash">{{ form.name.errors[0] }}</p>
-                    {% endif %}
                 </div>
                 <div class="field">
                     <label class="label">{{ form.email.label }}</label>

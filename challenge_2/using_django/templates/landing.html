@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="page-centralize">
+    <div class="v-margin">
+        <p class="title centralize">Hey, there. Welcome!</p>
+    </div>
+    <hr>
+    <div class="centralize">
+        <a href="{% url 'list_details' %}" class="button is-link is-large button-link">List All Details</a>
+        <a href="{% url 'add_detail' %}" class="button is-link is-large button-link">Add New Detail</a>
+    </div>
+</div>
+{% endblock %}
