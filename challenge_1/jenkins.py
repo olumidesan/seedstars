@@ -1,6 +1,5 @@
 
 # Module imports
-from urllib import request
 from datetime import datetime
 from jenkins_exceptions import JenkinsException, JenkinsAuthorizationException
 
